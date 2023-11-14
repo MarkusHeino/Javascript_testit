@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Sorter</title>
+</head>
+<body>
+
+<script>
+  // funktio numeroiden kysymiseen ja printtaamiseen
+  function getNumbers() {
+    let numbers = [];
+    let userInput;
+
+    // ohjelma ottaa vastaan numeroita, kunnes annetaan 0
+    do {
+      userInput = prompt("Enter a number (enter 0 to stop):");
+
+      // parsitaan numero floatiksi
+      let number = parseFloat(userInput);
+
+      // tarkastaa että annettu arvo on numero
+      if (!isNaN(number)) {
+        numbers.push(number);
+      } else {
+        alert("Invalid input. Please enter a valid number.");
+      }
+    } while (userInput !== "0");
+
+    // järjestellään numerot laskevassa järjestyksessä
+    numbers.sort(function(a, b) {
+      return b - a;
+    });
+
+    // tulosta järjestetyt numerot isoimmasta pienimpään
+    console.log("Sorted Numbers (largest to smallest):", numbers);
+  }
+
+  // kutsu funktiota heti kun sivu ladataan
+  window.onload = getNumbers;
+</script>
+
+</body>
+</html>

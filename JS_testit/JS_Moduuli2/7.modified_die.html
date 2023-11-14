@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Dice Roller</title>
+</head>
+<body>
+
+<script>
+  // funktio satunnaiselle nopanheitolle
+  function rollDice(sides) {
+    return Math.floor(Math.random() * sides) + 1;
+  }
+
+  // pääohjelma, joka heittää noppaa kunnes saadaan sen maksimisilmäluku
+  function mainProgram() {
+    // kysytään nopan tahkojen enimmäismäärää
+    let sides = parseInt(prompt("Enter the number of sides on the dice:"));
+
+    // tarkastetaan onko luku kelvollinen
+    if (isNaN(sides) || sides <= 0) {
+      alert("Invalid input. Please enter a valid number greater than 0.");
+      return;
+    }
+
+    let rolls = [];
+    let result;
+
+    do {
+      result = rollDice(sides);
+      rolls.push(result);
+    } while (result !== sides);
+
+    // printtaa tulokset satunnaiseen listaan
+    let resultList = document.createElement("ul");
+
+    for (let i = 0; i < rolls.length; i++) {
+      let listItem = document.createElement("li");
+      listItem.textContent = "Roll " + (i + 1) + ": " + rolls[i];
+      resultList.appendChild(listItem);
+    }
+
+    // lisää satunnainen lista sivulle
+    document.body.appendChild(resultList);
+  }
+
+  // kutsu funktiota kun sivu avataan
+  window.onload = mainProgram;
+</script>
+
+</body>
+</html>

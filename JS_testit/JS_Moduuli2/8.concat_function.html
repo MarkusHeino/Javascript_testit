@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Concatenation</title>
+</head>
+<body>
+
+<script>
+  // kytketään taulukon osat peräkkäin
+  function concat(arr) {
+    let result = "";
+
+    for (let i = 0; i < arr.length; i++) {
+      result += arr[i];
+    }
+
+    return result;
+  }
+
+  // merkkijonot taulukkoon
+  let namesArray = ["Johnny", "DeeDee", "Joey", "Marky"];
+
+  // kutsutaan kytköfunktiota ja tulostetaan taulukko sivulle
+  let resultString = concat(namesArray);
+
+  // luodaan osio näyttämään tulokset sivun elementissä
+  let resultParagraph = document.createElement("p");
+  resultParagraph.textContent = "Concatenated String: " + resultString;
+
+  // lisätään elementti sivuun
+  document.body.appendChild(resultParagraph);
+</script>
+
+</body>
+</html>

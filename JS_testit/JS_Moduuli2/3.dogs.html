@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Names</title>
+  <script>
+    // nappifunktio
+    function getDogNames() {
+      var dogNames = [];
+
+      // kysytään koirien nimiä
+      for (var i = 0; i < 6; i++) {
+        var dogName = prompt("Enter the name of dog " + (i + 1) + ":");
+        dogNames.push(dogName);
+      }
+
+      // järjestä koirien nimet käänteiseen aakkosjärkkään
+      dogNames.sort(function(a, b) {
+        return b.localeCompare(a);
+      });
+
+      // tulostetaan koirien nimet käänteisessä järjestyksessä
+      var resultContainer = document.getElementById("resultContainer");
+      resultContainer.innerHTML = "<h2>Dog Names</h2><ul>";
+
+      for (var i = 0; i < dogNames.length; i++) {
+        resultContainer.innerHTML += "<li>" + dogNames[i] + "</li>";
+      }
+
+      resultContainer.innerHTML += "</ul>";
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Dog Names</h2>
+
+  <!-- koirien nimet hakeva funktio -->
+  <button onclick="getDogNames()">Get Dog Names</button>
+
+  <!-- containeri tulosten esittämiseen -->
+  <div id="resultContainer"></div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Probability Calculator</title>
+</head>
+<body>
+
+<!-- HTML:t tähän -->
+
+<script>
+  // JavaScriptiä
+  // kysy noppien lukumäärää ja haluttu silmäluku
+  var numberOfDice = parseInt(prompt("Enter the number of dice:"));
+  var targetSum = parseInt(prompt("Enter the sum of eye numbers to find:"));
+
+  // funktio yhden nopan heittämiseksi
+  function rollDie() {
+    return Math.floor(Math.random() * 6) + 1; // Assuming a six-sided die
+  }
+
+  // funktio jolla heitetään pyydetty määrä noppia ja halutun silmäluvun todennäköisyys
+  function calculateProbability(numberOfRepetitions) {
+    var favorableOutcomes = 0;
+
+    for (var i = 0; i < numberOfRepetitions; i++) {
+      var sum = 0;
+      for (var j = 0; j < numberOfDice; j++) {
+        sum += rollDie();
+      }
+
+      if (sum === targetSum) {
+        favorableOutcomes++;
+      }
+    }
+
+    return favorableOutcomes / numberOfRepetitions;
+  }
+
+  // simuloidaan silmäluvun todennäköisyys
+  var probability = calculateProbability(10000);
+
+  // tulostetaan tulokset
+  document.write("<p>The probability of getting a sum of " + targetSum +
+    " with " + numberOfDice + " dice is approximately: " + (probability * 100).toFixed(2) + "%.</p>");
+</script>
+
+</body>
+</html>

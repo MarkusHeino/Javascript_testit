@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Root Calculator</title>
+</head>
+<body>
+
+<!-- HTML:ää -->
+
+<script>
+  // JavaScriptiä
+  // Näytä vahvistusruutu neliöjuuren laskemiselle
+  var shouldCalculate = confirm("Should I calculate the square root?");
+
+  if (shouldCalculate) {
+    // Kysy käyttäjältä numeroa
+    var inputNumber = parseFloat(prompt("Enter a number:"));
+
+    // tarkista onko numero negatiivinen (joten siitä ei voi ottaa neliöjuurta)
+    if (inputNumber < 0) {
+      // ilmoita jos numero on negatiivinen
+      document.write("<p>The square root of a negative number is not defined.</p>");
+    } else {
+      // laske ja tulosta neliöjuuri
+      var squareRoot = Math.sqrt(inputNumber);
+      document.write("<p>The square root of " + inputNumber + " is: " + squareRoot + ".</p>");
+    }
+  } else {
+    // vahvista, jos käyttäjä ei haluakaan laskea neliöjuurta
+    document.write("<p>The square root is not calculated.</p>");
+  }
+</script>
+
+</body>
+</html>

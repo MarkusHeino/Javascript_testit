@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Roller</title>
+</head>
+<body>
+
+<!-- HTML_ää -->
+
+<script>
+  // JavaScriptiä
+  // Kysy montako kertaa heitetään noppia
+  var numberOfRolls = parseInt(prompt("Enter the number of dice rolls:"));
+
+  // funktio yhden nopan heittämiseksi
+  function rollDie() {
+    return Math.floor(Math.random() * 6) + 1; // oletetaan, että kyseessä on kuusitahkoinen noppa 1-6 arvoilla
+  }
+
+  // heitä noppaa/noppia ja laske tahkojen summa
+  var sum = 0;
+  for (var i = 0; i < numberOfRolls; i++) {
+    var result = rollDie();
+    console.log("Roll " + (i + 1) + ": " + result);
+    sum += result;
+  }
+
+  // tulosta summa konsoliin
+  console.log("Sum of the results: " + sum);
+</script>
+
+</body>
+</html>

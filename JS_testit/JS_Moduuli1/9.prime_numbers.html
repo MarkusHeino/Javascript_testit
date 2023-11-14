@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Number Checker</title>
+</head>
+<body>
+
+<!-- HTML:ää -->
+
+<script>
+  // JavaScriptiä
+  // kysy kokonaislukua
+  var number = parseInt(prompt("Enter an integer:"));
+
+  // tarkastaa onko kyseessä alkuluku
+  function isPrime(num) {
+    if (num <= 1) {
+      return false;
+    }
+    for (var i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // tulosta tarkastuksen tulos
+  if (isPrime(number)) {
+    document.write("<p>" + number + " is a prime number.</p>");
+  } else {
+    document.write("<p>" + number + " is not a prime number.</p>");
+  }
+</script>
+
+</body>
+</html>

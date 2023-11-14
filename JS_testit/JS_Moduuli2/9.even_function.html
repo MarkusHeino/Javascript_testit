@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even Numbers</title>
+</head>
+<body>
+
+<script>
+  // funktio joka kerää parilliset luvut taulukosta
+  function even(numbers) {
+    let evenArray = [];
+
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] % 2 === 0) {
+        evenArray.push(numbers[i]);
+      }
+    }
+
+    return evenArray;
+  }
+
+  // numerotaulukko sivuun
+  let originalArray = [2, 7, 4];
+
+  // kutsutaan funktiota ja tulostetaan tiedot konsoliin
+  let evenNumbers = even(originalArray);
+
+  // tulostetaan uudet ja vanhat taulukot konsoliin
+  console.log("Original Array:", originalArray);
+  console.log("Even Numbers Array:", evenNumbers);
+</script>
+
+</body>
+</html>

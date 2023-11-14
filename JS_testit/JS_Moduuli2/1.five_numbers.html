@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse Order Numbers</title>
+  <script>
+    // nappula
+    function reverseNumbers() {
+      // numeroiden talletus
+      var numbers = [];
+
+      // kysytään käyttäjältä viittä numeroa
+      for (var i = 0; i < 5; i++) {
+        var userInput = prompt("Enter number " + (i + 1) + ":");
+        // muunnetaan annettu arvo numeroksi ja lisätään listaan
+        numbers.push(parseFloat(userInput));
+      }
+
+      // tulosta numerot käänteisessä järjestyksessä for looppina
+      console.log("Numbers in reverse order:");
+      for (var i = numbers.length - 1; i >= 0; i--) {
+        console.log(numbers[i]);
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Reverse Order Numbers</h2>
+
+  <!-- nappi, joka aloittaa listausfunktion -->
+  <button onclick="reverseNumbers()">Reverse Numbers</button>
+
+</body>
+</html>

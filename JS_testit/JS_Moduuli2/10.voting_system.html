@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even Numbers</title>
+</head>
+<body>
+
+<script>
+// Function to initialize candidates with initial votes
+function initializeCandidates(numCandidates) {
+  let candidates = [];
+
+  for (let i = 1; i <= numCandidates; i++) {
+    let candidateName = prompt(`Name for candidate ${i}:`);
+    candidates.push({ name: candidateName, votes: 0 });
+  }
+
+  return candidates;
+}
+
+// Function to conduct the voting process
+function conductVoting(candidates, numVoters) {
+  for (let i = 1; i <= numVoters; i++) {
+    let vote = prompt(`Voter ${i}, enter the name of the candidate you want to vote for (or press Enter for an empty vote):`);
+
+    if (vote !== null) {
+      // Find the candidate in the array and increment their votes
+      let candidate = candidates.find(candidate => candidate.name === vote);
+      if (candidate) {
+        candidate.votes++;
+      } else {
+        console.log(`Invalid vote for ${vote}. Candidate not found.`);
+      }
+    } else {
+      console.log(`Voter ${i} has submitted an empty vote.`);
+    }
+  }
+}
+
+// Function to announce the winner and display results
+function announceResults(candidates) {
+  // Sort candidates by votes in descending order
+  candidates.sort((a, b) => b.votes - a.votes);
+
+  // Print the winner and results
+  console.log(`The winner is ${candidates[0].name} with ${candidates[0].votes} votes.`);
+  console.log("Results:");
+  candidates.forEach(candidate => {
+    console.log(`${candidate.name}: ${candidate.votes} votes`);
+  });
+}
+
+// Main program
+let numCandidates = parseInt(prompt("Enter the number of candidates:"));
+
+if (!isNaN(numCandidates) && numCandidates > 0) {
+  let candidates = initializeCandidates(numCandidates);
+
+  let numVoters = parseInt(prompt("Enter the number of voters:"));
+
+  if (!isNaN(numVoters) && numVoters > 0) {
+    conductVoting(candidates, numVoters);
+    announceResults(candidates);
+  } else {
+    console.log("Invalid number of voters.");
+  }
+} else {
+  console.log("Invalid number of candidates.");
+}
+</script>
+
+</body>
+</html>

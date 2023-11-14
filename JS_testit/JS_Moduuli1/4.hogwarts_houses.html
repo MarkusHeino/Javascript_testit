@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electronic Sorting Hat</title>
+</head>
+<body>
+
+<!-- HTML:ää tähän -->
+
+<script>
+  // JavaScriptiä
+  // Kysy käyttäjänimeä
+  var userName = prompt("Please enter your name:");
+
+  // arvotaan numero 1-4 väliltä tuvan valintaan
+  var randomValue = Math.floor(Math.random() * 4) + 1;
+
+  // arvotaan tupa
+  var house;
+  switch (randomValue) {
+    case 1:
+      house = "Gryffindor";
+      break;
+    case 2:
+      house = "Slytherin";
+      break;
+    case 3:
+      house = "Hufflepuff";
+      break;
+    case 4:
+      house = "Ravenclaw";
+      break;
+    default:
+      house = "Unknown House";
+  }
+
+  // tulosta tupa HTML:n sekaan
+  document.write("<p>" + userName + ", you are in " + house + ".</p>");
+</script>
+
+</body>
+</html>

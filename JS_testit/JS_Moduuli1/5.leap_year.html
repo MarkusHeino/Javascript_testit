@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leap Year Checker</title>
+</head>
+<body>
+
+<!-- HTML:ää...  -->
+
+<script>
+  // JavaScriptiä
+  // kysy vuosilukua
+  var inputYear = parseInt(prompt("Please enter a year:"));
+
+  // tarkista onko vuosi karkausvuosi
+  var isLeapYear = false;
+  if ((inputYear % 4 === 0 && inputYear % 100 !== 0) || (inputYear % 400 === 0)) {
+    isLeapYear = true;
+  }
+
+  // näytä tulos HTML:n seassa
+  if (isLeapYear) {
+    document.write("<p>" + inputYear + " is a leap year.</p>");
+  } else {
+    document.write("<p>" + inputYear + " is not a leap year.</p>");
+  }
+</script>
+
+</body>
+</html>

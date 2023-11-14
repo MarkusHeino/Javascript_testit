@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participant Names</title>
+  <script>
+    // nappifunktio
+    function getParticipantNames() {
+      // käyttäjien lukumäärän pyytäminen
+      var participantCount = prompt("Enter the number of participants:");
+      var participants = [];
+
+      // kysytään nimet
+      for (var i = 0; i < participantCount; i++) {
+        var participantName = prompt("Enter the name of participant " + (i + 1) + ":");
+        participants.push(participantName);
+      }
+
+      // listataan nimet aakkosjärjestykseen
+      participants.sort();
+
+      // tulostetaan nimet aakkosjärjestykseen sivulle
+      var resultContainer = document.getElementById("resultContainer");
+      resultContainer.innerHTML = "<h2>Participant Names</h2><ol>";
+
+      for (var i = 0; i < participants.length; i++) {
+        resultContainer.innerHTML += "<li>" + participants[i] + "</li>";
+      }
+
+      resultContainer.innerHTML += "</ol>";
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Participant Names</h2>
+
+  <!-- napin funktio -->
+  <button onclick="getParticipantNames()">Get Participant Names</button>
+
+  <!-- tulosten esittäminen containerissa -->
+  <div id="resultContainer"></div>
+
+</body>
+</html>

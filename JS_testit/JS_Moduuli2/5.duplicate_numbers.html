@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Checker</title>
+</head>
+<body>
+
+<script>
+  // funktio joka kysyy numeroita ja tarkistaa onko numero annettu jo aiemmin
+  function getNumbers() {
+    let numbers = new Set();
+    let userInput;
+
+    while (true) {
+      userInput = prompt("Enter a number (enter 'stop' to finish):");
+
+      // kysytään halutaanko vielä lisätä numeroita
+      if (userInput.toLowerCase() === 'stop') {
+        break;
+      }
+
+      // parsitaan numerot floatiksi
+      let number = parseFloat(userInput);
+
+      // tarkistetaan numeron kelpoisuus
+      if (!isNaN(number)) {
+        // onko numero annettu aiemmin
+        if (numbers.has(number)) {
+          alert("Number has already been given. Stopping operation.");
+          break;
+        } else {
+          // lisätään numero listaan
+          numbers.add(number);
+        }
+      } else {
+        alert("Invalid input. Please enter a valid number.");
+      }
+    }
+
+    // muunnetaan lista nousevaan järjestykseen
+    let sortedNumbers = Array.from(numbers).sort(function(a, b) {
+      return a - b;
+    });
+
+    // printataan lista nousevassa järjestyksessä
+    console.log("Given Numbers (ascending order):", sortedNumbers);
+  }
+
+  // kutsutaan funktiota kun sivu avataan
+  window.onload = getNumbers;
+</script>
+
+</body>
+</html>

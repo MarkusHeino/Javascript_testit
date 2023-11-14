@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Roller</title>
+</head>
+<body>
+
+<script>
+  // funktio joka luo nopanheiton 1-6 silmäluvulliselle nopalle
+  function rollDice() {
+    return Math.floor(Math.random() * 6) + 1;
+  }
+
+  // pääohjelma joka heittää noppaa kunnes luvuksi tulee 6
+  function mainProgram() {
+    let rolls = [];
+    let result;
+
+    do {
+      result = rollDice();
+      rolls.push(result);
+    } while (result !== 6);
+
+    // printataan tulos järjestymättömään listaan
+    let resultList = document.createElement("ul");
+
+    for (let i = 0; i < rolls.length; i++) {
+      let listItem = document.createElement("li");
+      listItem.textContent = "Roll " + (i + 1) + ": " + rolls[i];
+      resultList.appendChild(listItem);
+    }
+
+    // lisätään järjestymätön lista sivulle
+    document.body.appendChild(resultList);
+  }
+
+  // printataan lista nousevassa järjestyksessä
+  window.onload = mainProgram;
+</script>
+
+</body>
+</html>

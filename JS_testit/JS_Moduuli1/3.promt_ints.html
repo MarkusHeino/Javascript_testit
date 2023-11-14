@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Operations</title>
+</head>
+<body>
+
+<!-- HTML -->
+
+<script>
+  // JavaScriptiä
+  // Pyydä kolme kokonaislukua
+  var num1 = parseInt(prompt("Enter the first integer:"));
+  var num2 = parseInt(prompt("Enter the second integer:"));
+  var num3 = parseInt(prompt("Enter the third integer:"));
+
+  // laske summa, tulo ja keskiarvo
+  var sum = num1 + num2 + num3;
+  var product = num1 * num2 * num3;
+  var average = sum / 3;
+
+  // tulosta tulokset HTML:n sekaan
+  document.write("<p>Sum: " + sum + "</p>");
+  document.write("<p>Product: " + product + "</p>");
+  document.write("<p>Average: " + average + "</p>");
+</script>
+
+</body>
+</html>
