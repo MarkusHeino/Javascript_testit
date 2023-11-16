@@ -18,15 +18,14 @@
           numbers.push(parsedNumber);
         } else {
           alert("Invalid input. Please enter a valid number.");
-          return; // funktiosta poistutaan jos annettu arvo ei ole numero
+          return; // lopeta funktio, jos annettu numero ei ole numero
         }
       }
 
-      var reversedNumbers = numbers.slice().reverse(); // luo kopio taulukosta ennen järjestyksen kääntämistä
+      var reversedNumbers = numbers.slice().reverse(); // luo taulukko ennen uudelleenjärjestelyä
 
-      // näytä luvut verkkosivuilla käänteisessä järjestyksessä
-      var resultParagraph = document.getElementById("result");
-      resultParagraph.textContent = "Numbers in reverse order: " + reversedNumbers.join(', ');
+      // printtaa uusi järjestys konsoliin
+      console.log("Numbers in reverse order:", reversedNumbers);
     }
   </script>
 </head>
@@ -34,14 +33,11 @@
 
   <h2>Reverse Order Numbers</h2>
 
-  <!-- Button to trigger the reverseNumbers function -->
+  <!-- nappi joka käynnistää järjestelyfunktion -->
   <button onclick="reverseNumbers()">Reverse Numbers</button>
 
-  <!-- Display reversed numbers here -->
-  <p id="result"></p>
-
   <script>
-    // Prompt the user for input when the page is opened
+    // funktio, jolla kysytään numeroita kun sivu avataan
     window.onload = function() {
       reverseNumbers();
     };
