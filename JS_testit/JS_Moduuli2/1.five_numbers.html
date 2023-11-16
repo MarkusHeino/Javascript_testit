@@ -5,23 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reverse Order Numbers</title>
   <script>
-    // nappula
     function reverseNumbers() {
-      // numeroiden talletus
       var numbers = [];
 
-      // kysytään käyttäjältä viittä numeroa
+      // kysy numeroita kun sivu avataan
       for (var i = 0; i < 5; i++) {
         var userInput = prompt("Enter number " + (i + 1) + ":");
-        // muunnetaan annettu arvo numeroksi ja lisätään listaan
-        numbers.push(parseFloat(userInput));
+
+        var parsedNumber = parseFloat(userInput);
+
+        if (!isNaN(parsedNumber)) {
+          numbers.push(parsedNumber);
+        } else {
+          alert("Invalid input. Please enter a valid number.");
+          return; // funktiosta poistutaan jos annettu arvo ei ole numero
+        }
       }
 
-      // tulosta numerot käänteisessä järjestyksessä for looppina
-      console.log("Numbers in reverse order:");
-      for (var i = numbers.length - 1; i >= 0; i--) {
-        console.log(numbers[i]);
-      }
+      var reversedNumbers = numbers.slice().reverse(); // luo kopio taulukosta ennen järjestyksen kääntämistä
+
+      // näytä luvut verkkosivuilla käänteisessä järjestyksessä
+      var resultParagraph = document.getElementById("result");
+      resultParagraph.textContent = "Numbers in reverse order: " + reversedNumbers.join(', ');
     }
   </script>
 </head>
@@ -29,8 +34,18 @@
 
   <h2>Reverse Order Numbers</h2>
 
-  <!-- nappi, joka aloittaa listausfunktion -->
+  <!-- Button to trigger the reverseNumbers function -->
   <button onclick="reverseNumbers()">Reverse Numbers</button>
+
+  <!-- Display reversed numbers here -->
+  <p id="result"></p>
+
+  <script>
+    // Prompt the user for input when the page is opened
+    window.onload = function() {
+      reverseNumbers();
+    };
+  </script>
 
 </body>
 </html>
