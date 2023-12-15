@@ -16,7 +16,6 @@ document.getElementById('addressForm').addEventListener('submit', function (even
 
   const schoolCoordinates = { latitude: 60.24, longitude: 24.74 };
 
-  // Fetch the coordinates for the user's address
   fetch(`https://api.digitransit.fi/geocoding/v1/search?text=${encodeURIComponent(address)}&size=1&apiKey=${geocodingApiKey}`)
     .then(response => response.json())
     .then(data => {
