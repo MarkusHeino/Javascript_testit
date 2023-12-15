@@ -12,7 +12,19 @@
 
 <body>
     <h1>Task 1</h1>
+    <ul id="target">
     </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var targetElement = document.getElementById('target');
+
+            targetElement.innerHTML = '<li>First item</li><li>Second item</li><li>Third item</li>';
+
+            targetElement.classList.add('my-list');
+        });
+    </script>
 </body>
 
 </html>
