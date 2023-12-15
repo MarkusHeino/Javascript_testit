@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chuck Norris Joke App</title>
+</head>
+
+<body>
+  <script>
+    fetch('https://api.chucknorris.io/jokes/random')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.value);
+      })
+      .catch(error => {
+        console.error(`Error fetching Chuck Norris joke: ${error.message}`);
+      });
+  </script>
+</body>
+
+</html>

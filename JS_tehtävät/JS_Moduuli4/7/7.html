@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Route Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+</head>
+<body>
+    <h1>Route Finder</h1>
+    <form id="addressForm">
+        <label for="address">Enter your address:</label>
+        <input type="text" id="address" required>
+        <input type="submit" value="Find Route">
+    </form>
+
+    <div id="routeInfo"></div>
+    <div id="map" style="width: 100%; height: 400px;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="7.js"></script>
+</body>
+</html>

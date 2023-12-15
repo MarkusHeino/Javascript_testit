@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chuck Norris Joke Search App</title>
+  <style>
+    article {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Chuck Norris Joke Search</h1>
+
+  <form id="searchForm">
+    <label for="query">Enter search term:</label>
+    <input id="query" name="q" type="text" required>
+    <input type="submit" value="Search">
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    const searchForm = document.getElementById('searchForm');
+    const resultsContainer = document.getElementById('results');
+
+    searchForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const queryInput = document.getElementById('query');
+      const query = queryInput.value;
+
+      fetch(`https://api.chucknorris.io/jokes/search?query=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+          displayResults(data.result);
+        })
+        .catch(error => {
+          console.error(`Error fetching Chuck Norris jokes: ${error.message}`);
+        });
+    });
+
+    function displayResults(jokes) {
+      resultsContainer.innerHTML = '';
+
+      jokes.forEach(joke => {
+        const article = document.createElement('article');
+        const p = document.createElement('p');
+        p.textContent = joke.value;
+        article.appendChild(p);
+
+        resultsContainer.appendChild(article);
+      });
+    }
+  </script>
+</body>
+
+</html>
