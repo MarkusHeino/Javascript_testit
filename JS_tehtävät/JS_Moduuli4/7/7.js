@@ -5,9 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-const routingApiAddress = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
-const geocodingApiAddress = 'https://api.digitransit.fi/geocoding/v1/search';
-const routingApiKey = '7a07d302fa45407680f37a3f690ae289';
+const apiAddress = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
 const geocodingApiKey = '7a07d302fa45407680f37a3f690ae289';
 
 document.getElementById('addressForm').addEventListener('submit', function (event) {
@@ -18,28 +16,20 @@ document.getElementById('addressForm').addEventListener('submit', function (even
 
   const schoolCoordinates = { latitude: 60.24, longitude: 24.74 };
 
- fetch(`${geocodingApiAddress}?text=${encodeURIComponent(address)}&size=1&key=${geocodingApiKey}`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch coordinates. HTTP status ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    if (!data.features || data.features.length === 0) {
-      throw new Error('No coordinates found for the given address.');
-    }
+  // Fetch the coordinates for the user's address
+  fetch(`https://api.digitransit.fi/geocoding/v1/search?text=${encodeURIComponent(address)}&size=1&apiKey=${geocodingApiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      const userCoordinates = {
+        latitude: data.features[0].geometry.coordinates[1],
+        longitude: data.features[0].geometry.coordinates[0]
+      };
 
-    const userCoordinates = {
-      latitude: data.features[0].geometry.coordinates[1],
-      longitude: data.features[0].geometry.coordinates[0]
-    };
-
-    getRoute(userCoordinates, schoolCoordinates);
-  })
-  .catch(error => {
-    console.error(`Error fetching coordinates: ${error.message}`);
-  });
+      getRoute(userCoordinates, schoolCoordinates);
+    })
+    .catch(error => {
+      console.error(`Error fetching coordinates: ${error.message}`);
+    });
 });
 
 function getRoute(origin, target) {
@@ -56,9 +46,6 @@ function getRoute(origin, target) {
           mode
           duration
           distance
-          legGeometry {
-            points
-          }
         }
       }
     }
@@ -68,17 +55,15 @@ function getRoute(origin, target) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'digitransit-subscription-key': routingApiKey,
     },
     body: JSON.stringify({ query: GQLQuery }),
   };
 
-  fetch(routingApiAddress, fetchOptions)
+  fetch(apiAddress, fetchOptions)
     .then(response => response.json())
     .then(result => {
       const legs = result.data.plan.itineraries[0].legs;
       displayRouteInfo(legs);
-      displayRouteOnMap(origin, target, legs);
     })
     .catch(error => {
       console.error(`Error fetching route: ${error.message}`);
@@ -101,32 +86,4 @@ function displayRouteInfo(legs) {
 
     routeInfoDiv.appendChild(infoParagraph);
   }
-}
-
-function displayRouteOnMap(origin, target, legs) {
-  for (const leg of legs) {
-    let color = '';
-    switch (leg.mode) {
-      case 'WALK':
-        color = 'green';
-        break;
-      case 'BUS':
-        color = 'red';
-        break;
-      case 'RAIL':
-        color = 'cyan';
-        break;
-      case 'TRAM':
-        color = 'magenta';
-        break;
-      default:
-        color = 'blue';
-        break;
-    }
-    const route = leg.legGeometry.points;
-    const pointObjects = L.Polyline.fromEncoded(route).getLatLngs();
-    L.polyline(pointObjects, { color }).addTo(map);
-  }
-
-  map.fitBounds([[origin.latitude, origin.longitude], [target.latitude, target.longitude]]);
 }
