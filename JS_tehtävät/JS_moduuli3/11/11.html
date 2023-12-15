@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+    <script src="11.js" defer></script>
+    <link href="11.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Task 5</h1>
+        </header>
+        <main>
+            <section id="pictures">
+            </section>
+        </main>
+        <footer>
+            <p>This is a footer</p>
+        </footer>
+    </div>
+
+    <dialog id="imageModal">
+        <span id="closeModal">&#x2715;</span>
+        <img id="modalImage" alt="Large Image">
+    </dialog>
+
+    <script>
+        let picturesSection = document.getElementById('pictures');
+
+        let picArray = [
+            { title: 'Title 1', image: 'thumbnails/pic1.jpg', caption: 'Caption 1', description: 'Description 1' },
+            { title: 'Title 2', image: 'thumbnails/pic2.jpg', caption: 'Caption 2', description: 'Description 2' },
+            { title: 'Title 3', image: 'thumbnails/pic3.jpg', caption: 'Caption 3', description: 'Description 3' },
+            { title: 'Title 4', image: 'thumbnails/pic4.jpg', caption: 'Caption 4', description: 'Description 4' },
+        ];
+
+        for (let i = 0; i < picArray.length; i++) {
+            let article = document.createElement('article');
+            article.classList.add('card');
+
+            let h2 = document.createElement('h2');
+            h2.textContent = picArray[i].title;
+
+            let figure = document.createElement('figure');
+
+            let img = document.createElement('img');
+            img.src = picArray[i].image;
+            img.alt = picArray[i].title;
+
+            let figcaption = document.createElement('figcaption');
+            figcaption.textContent = picArray[i].caption;
+
+            let p = document.createElement('p');
+            p.textContent = picArray[i].description;
+
+            figure.appendChild(img);
+            figure.appendChild(figcaption);
+            article.appendChild(h2);
+            article.appendChild(figure);
+            article.appendChild(p);
+
+            article.addEventListener('click', function () {
+                let modalImage = document.getElementById('modalImage');
+                modalImage.src = `img/${picArray[i].image.replace('thumbnails/', '')}`;
+                let imageModal = document.getElementById('imageModal');
+                imageModal.showModal();
+            });
+
+            picturesSection.appendChild(article);
+        }
+
+        let closeModal = document.getElementById('closeModal');
+        closeModal.addEventListener('click', function () {
+            let imageModal = document.getElementById('imageModal');
+            imageModal.close();
+        });
+    </script>
+</body>
+
+</html>
